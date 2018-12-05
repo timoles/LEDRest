@@ -1,5 +1,6 @@
 * ssh pi@192.168.0.101
 * pi:raspberry
+* IP might needs to be changed in the following config
 
 	sudo apt update
 	
@@ -42,7 +43,7 @@
 	<IfModule mod_ssl.c>
         <VirtualHost _default_:443>
                 ServerAdmin raspberry@mtimo.de
-                ServerName ------------IPIPIPIPIPIPIPIP--------
+                ServerName 192.168.0.101
 
                 DocumentRoot /var/www/html
 
@@ -78,7 +79,7 @@
 	sudo vim /etc/apache2/sites-available/000-default.conf (add following)
 	
 	```
-	Redirect "/" "https://your_domain_or_IP/"
+	Redirect "/" "192.168.0.101/"
 	```
 	
 	sudo a2enmod ssl
@@ -88,6 +89,14 @@
 	sudo a2ensite default-ssl
 	
 	sudo a2enconf ssl-params
+	
+	sudo a2enmod proxy
+	
+	sudo a2enmod proxy_http
+	
+	sudo a2enmod proxy_balancer
+	
+	sudo a2enmod lbmethod_byrequests
 	
 	sudo apache2ctl configtest
 	
