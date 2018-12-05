@@ -74,7 +74,7 @@
 	</IfModule>
 	```
 	
-	sudo vim /etc/apache2/sites-available/000-default.conf
+	sudo vim /etc/apache2/sites-available/000-default.conf (add following)
 	
 	```
 	Redirect "/" "https://your_domain_or_IP/"
