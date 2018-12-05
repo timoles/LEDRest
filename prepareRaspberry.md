@@ -2,8 +2,7 @@
 * pi:raspberry
 
 	sudo apt update
-	sudo apt install apache2
-	sudo apt install vim
+	sudo apt install apache2 apache2-utils vim
 	
 	sudo openssl req -x509 -nodes -days 3650 -newkey rsa:2048 -keyout /etc/ssl/private/apache-selfsigned.key -out /etc/ssl/certs/apache-selfsigned.crt
 	sudo openssl dhparam -out /etc/ssl/certs/dhparam.pem 2048
@@ -49,7 +48,7 @@
 
                 SSLEngine on
 
-                SSLCertificateFile      /etc/ssl/certs/apache-selfsigned.crt
+                SSLCertificateFile     /etc/ssl/certs/apache-selfsigned.crt
                 SSLCertificateKeyFile /etc/ssl/private/apache-selfsigned.key
 
                 <FilesMatch "\.(cgi|shtml|phtml|php)$">
@@ -58,11 +57,17 @@
                 <Directory /usr/lib/cgi-bin>
                                 SSLOptions +StdEnvVars
                 </Directory>
-
-                BrowserMatch "MSIE [2-6]" \
-                               nokeepalive ssl-unclean-shutdown \
-                               downgrade-1.0 force-response-1.0
-
+		
+		ProxyPreserveHost On
+    		ProxyPass / http://127.0.0.1:8080/
+    		ProxyPassReverse / http://127.0.0.1:8080/
+    
+		<Location />
+			AuthType Basic
+			AuthName "Restricted Content"
+			AuthUserFile /etc/apache2/.htpasswd
+			Require valid-user
+  		 </Location>
 		</VirtualHost>
 	</IfModule>
 	```
@@ -78,4 +83,8 @@
 	sudo a2ensite default-ssl
 	sudo a2enconf ssl-params
 	sudo apache2ctl configtest
+	
+	sudo htpasswd -c /etc/apache2/.htpasswd admin
+	
+	
 	sudo systemctl restart apache2
