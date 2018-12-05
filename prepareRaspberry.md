@@ -1,7 +1,12 @@
+# Prepare Raspberry Pi
+
+## Info
+
 * ssh pi@192.168.0.101
 * pi:raspberry
 * IP might needs to be changed in the following config
 
+##  Set up start
 	sudo apt update
 	
 	sudo apt install apache2 apache2-utils vim
