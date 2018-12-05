@@ -5,6 +5,7 @@
 	sudo apt install apache2 apache2-utils vim
 	
 	sudo openssl req -x509 -nodes -days 3650 -newkey rsa:2048 -keyout /etc/ssl/private/apache-selfsigned.key -out /etc/ssl/certs/apache-selfsigned.crt
+	
 	sudo openssl dhparam -out /etc/ssl/certs/dhparam.pem 2048
 	
 	
@@ -33,6 +34,7 @@
 	```
 	
 	sudo cp /etc/apache2/sites-available/default-ssl.conf /etc/apache2/sites-available/default-ssl.conf.bak
+	
 	sudo vim /etc/apache2/sites-available/default-ssl.conf
 	
 	```
@@ -79,9 +81,13 @@
 	```
 	
 	sudo a2enmod ssl
+	
 	sudo a2enmod headers
+	
 	sudo a2ensite default-ssl
+	
 	sudo a2enconf ssl-params
+	
 	sudo apache2ctl configtest
 	
 	sudo htpasswd -c /etc/apache2/.htpasswd admin
