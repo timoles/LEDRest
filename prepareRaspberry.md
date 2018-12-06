@@ -5,17 +5,12 @@
 * ssh pi@192.168.0.101
 * pi:raspberry
 * IP might needs to be changed in the following config
+* change SSH password
 
 ##  Set up start
 	sudo apt update
 	
-	sudo apt install apache2 apache2-utils vim
-	
-	wget https://dl.google.com/go/go1.11.2.linux-amd64.tar.gz
-	
-	sudo tar -C /usr/local -xzf go1.11.2.linux-amd64.tar.gz
-	
-	export PATH=$PATH:/usr/local/go/bin
+	sudo apt install -y apache2 apache2-utils vim git python-dev swig scons
 	
 	sudo openssl req -x509 -nodes -days 3650 -newkey rsa:2048 -keyout /etc/ssl/private/apache-selfsigned.key -out /etc/ssl/certs/apache-selfsigned.crt
 	
@@ -115,3 +110,20 @@
 	
 	
 	sudo systemctl restart apache2
+	
+	
+	git clone https://github.com/timoles/rpi_ws281x.git
+	
+	git clone https://github.com/timoles/LEDRest.git
+	
+	cd rpi_ws281x/
+	
+	scons
+	
+	cd python/
+	
+	python ./setup.py build
+	
+	sudo python ./setup.py install
+	
+	sudo python examples/strandtest.py
