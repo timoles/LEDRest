@@ -11,6 +11,12 @@
 	
 	sudo apt install apache2 apache2-utils vim
 	
+	wget https://dl.google.com/go/go1.11.2.linux-amd64.tar.gz
+	
+	tar -C /usr/local -xzf go1.11.2.linux-amd64.tar.gz
+	
+	export PATH=$PATH:/usr/local/go/bin
+	
 	sudo openssl req -x509 -nodes -days 3650 -newkey rsa:2048 -keyout /etc/ssl/private/apache-selfsigned.key -out /etc/ssl/certs/apache-selfsigned.crt
 	
 	sudo openssl dhparam -out /etc/ssl/certs/dhparam.pem 2048
