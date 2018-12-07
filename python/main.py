@@ -29,7 +29,7 @@ colorB = 0
 
 def runLedStrip():
 	while True:
-		colorWipe(strip, Color(255, 0, 0))
+		colorWipe(strip, Color(colorR, colorG, colorB))
 
 def colorWipe(strip, color, wait_ms=50):
 	"""Wipe color across display a pixel at a time."""
@@ -54,15 +54,18 @@ class myHandler(BaseHTTPRequestHandler):
 		print imsi  # Prints None or the string value of imsi
 		
 		# Split path to get base path
-		path = self.path.split("?")
+		path = self.path.split("?")[0]
 		print path
 
-		return
-		if self.path=="/on":
-			pass
-		if self.path=="/off":
-			pass
-		if self.path=="/modify":
+		if path=="/on":
+			colorR = 100
+			colorG = 125
+			colorB = 125
+		if path=="/off":
+			colorR = 0
+			colorG = 0
+			colorB = 0
+		if path=="/color":
 			pass
 
 		self.send_response(404)
