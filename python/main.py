@@ -28,11 +28,11 @@ colorB = 0
 
 
 def runLedStrip():
-	while true:
+	while True:
 		colorWipe(strip, Color(255, 0, 0))
 
 def colorWipe(strip, color, wait_ms=50):
-    """Wipe color across display a pixel at a time."""
+	"""Wipe color across display a pixel at a time."""
 	for i in range(strip.numPixels()):
 		strip.setPixelColor(i, color)
 		strip.show()
