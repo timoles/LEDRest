@@ -78,6 +78,7 @@ try:
 	server = HTTPServer(('', PORT_NUMBER), myHandler)
 	print 'Started httpserver on port ' , PORT_NUMBER
 	strip = Adafruit_NeoPixel(LED_COUNT, LED_PIN, LED_FREQ_HZ, LED_DMA, LED_INVERT, LED_BRIGHTNESS, LED_CHANNEL)
+	strip.begin()
 	#Wait forever for incoming htto requests
 
 	download_thread = threading.Thread(target=runLedStrip, args="")
