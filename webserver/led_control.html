@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <title>LED control center</title>
+    <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
+    <script src='assets/bootstrap/js/bootstrap.min.js'></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+</head>
+<body>
+<div class="container-fluid">
+    <div class="row">
+
+        <div class="col-sm-4">
+            <h2>LED control</h2>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-4">
+            <form action="/color">
+                <div class="form-group">
+                    <input type="color" class="form-control" value="#ff0000">
+                </div>
+                <button type="submit" class="btn btn-primary">Set color</button>
+            </form>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-4">
+            <form action="/on">
+                <div class="form-group">
+                    <input type="hidden" class="form-control">
+                </div>
+                <button type="submit" class="btn btn-primary">Turn LED ON</button>
+            </form>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-4">
+            <form action="/off">
+                <div class="form-group">
+                    <input type="hidden" class="form-control">
+                </div>
+                <button type="submit" class="btn btn-primary">Turn LED OFF</button>
+            </form>
+        </div>
+    </div>
+</div>
+</body>
+</html>
+
