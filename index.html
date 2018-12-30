@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <title>LED control center</title>
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+        .slidecontainer {
+            width: 100%; /* Width of the outside container */
+        }
+
+        /* The slider itself */
+        .slider {
+            -webkit-appearance: none; /* Override default CSS styles */
+            appearance: none;
+            width: 100%; /* Full-width */
+            height: 25px; /* Specified height */
+            background: #d3d3d3; /* Grey background */
+            outline: none; /* Remove outline */
+            opacity: 0.7; /* Set transparency (for mouse-over effects on hover) */
+            -webkit-transition: .2s; /* 0.2 seconds transition on hover */
+            transition: opacity .2s;
+        }
+
+        /* Mouse-over effects */
+        .slider:hover {
+            opacity: 1; /* Fully shown on mouse-over */
+        }
+
+        /* The slider handle (use -webkit- (Chrome, Opera, Safari, Edge) and -moz- (Firefox) to override default look) */
+        .slider::-webkit-slider-thumb {
+            -webkit-appearance: none; /* Override default look */
+            appearance: none;
+            width: 25px; /* Set a specific slider handle width */
+            height: 25px; /* Slider handle height */
+            background: #4CAF50; /* Green background */
+            cursor: pointer; /* Cursor on hover */
+        }
+
+        .slider::-moz-range-thumb {
+            width: 25px; /* Set a specific slider handle width */
+            height: 25px; /* Slider handle height */
+            background: #4CAF50; /* Green background */
+            cursor: pointer; /* Cursor on hover */
+        }
+    </style>
+</head>
+<body>
+<div class="container-fluid">
+    <div class="row">
+
+        <div class="col-sm-4">
+            <h2>LED control Jenny</h2>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-4">
+            <form action="/color">
+                <div class="form-group">
+                    <input name="rgb" type="color" id="color" class="form-control" value="#ff0000">
+                </div>
+                <button type="submit" class="btn btn-primary" value="Set color">Set color</button>
+            </form>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-4">
+            <form action="/on">
+                <div class="form-group">
+                    <input type="hidden" class="form-control">
+                </div>
+                <button type="submit" class="btn btn-primary">Turn LED ON</button>
+            </form>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-4">
+            <form action="/off">
+                <div class="form-group">
+                    <input type="hidden" class="form-control">
+                </div>
+                <button type="submit" class="btn btn-primary">Turn LED OFF</button>
+            </form>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-4">
+            <form action="brightness">
+                <div class="form-group">
+                    <div class="slidecontainer">
+                        <input name="b" type="range" min="0" max="255" value="255" class="slider" id="myRange">
+                        <p>Brightness: <span id="demo"></span></p>
+                    </div>
+                </div>
+                <button type="submit" class="btn btn-primary">Set brightness</button>
+            </form>
+            <script>
+                var slider = document.getElementById("myRange");
+                var output = document.getElementById("demo");
+                output.innerHTML = slider.value;
+
+                slider.oninput = function () {
+                    output.innerHTML = this.value;
+                }
+            </script>
+        </div>
+    </div>
+</div>
+
+
+</body>
+</html>
+
