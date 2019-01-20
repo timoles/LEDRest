@@ -47,8 +47,8 @@
 * A 6.2V capacitor is installed inbetween the negative and positive connection to the LED strip to absorb voltage spikes.
 
 
-* I used a 5V 2Amp power supply to power both the LED strip and the ESP8266 (through `VIN`)
-
+* I used a 5V 2Amp power supply to power both the LED strip (Strip PIN `VIN`)
+ and the ESP8266 (PIN `D1`)
 * A resistor ~500 ohm is inbetween the ESP8266 and the `DIN`
 
 * The ground of the LED strip should aditionaly to the normal ground be connected to the ESP8266 ground (don't know if redundancy is needed, but the ground at the ESP8266 is definetly needed)
