@@ -56,16 +56,7 @@
             <h2>LED control</h2>
         </div>
     </div>
-    <div class="row">
-        <div class="col-sm-4">
-            <form action="/color">
-                <div class="form-group">
-                    <input name="rgb" type="color" id="color" class="form-control" value="#ff0000">
-                </div>
-                <button type="submit" class="btn btn-primary" value="Set color">Set color</button>
-            </form>
-        </div>
-    </div>
+	
     <div class="row">
         <div class="col-sm-4">
             <form action="/on">
@@ -108,8 +99,43 @@
             </script>
         </div>
     </div>
-</div>
+	
+	   <div class="row">
+		<br><br>
+        <div class="col-sm-4">
+		
+			<script src="jscolor.js"></script>
 
+			<form id="colorForm" action="/color">
+				
+				<p>
+					<button id="colorButton" class="jscolor">Pick a color</button>
+				</p>
+				<input name="rgb" id="colorInput" class="form-control" onClick="update()" type="submit" value="Set color">
+			</form>
+		</div>
+	</div>
+</div>
+<script>
+	function rgbToHex(col)
+	{
+		if(col.charAt(0)=='r')
+		{
+			col=col.replace('rgb(','').replace(')','').split(',');
+			var r=parseInt(col[0], 10).toString(16);
+			var g=parseInt(col[1], 10).toString(16);
+			var b=parseInt(col[2], 10).toString(16);
+			r=r.length==1?'0'+r:r; g=g.length==1?'0'+g:g; b=b.length==1?'0'+b:b;
+			var colHex='#'+r+g+b;
+			return colHex;
+		}
+	}
+	
+	function update(){
+		document.getElementById('colorInput').value = rgbToHex(document.getElementById("colorButton").style.backgroundColor);
+		document.getElementById("colorForm").submit();
+	}
+</script>
 
 </body>
 </html>
